@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <a-assets>
+                <a-image id="planetaNevado" src="Espacio\Planetas\Snowy\Snowy_01-1024x512.png"></a-image>
+                <a-image id="planetaTropical" src="Terrenos\Tropical Planet 1280x720\1280x720 Tropical - Wet.png"></a-image>
+                <a-image id="planetaBarren" src="Espacio\Planetas\Barren\Barren_04-1024x512.png"></a-image>
+                <a-curvedimage id="cielo" src="Espacio\stars.jpg"></a-curvedimage>
+            </a-assets>
+            <a-sphere position="-700 400 -500" radius="200" animation="property: rotation; to: 0 360 0; dur: 100000; easing: linear; loop: true" src="#planetaNevado"></a-sphere>
+            <a-entity environment="preset: default; skyType: none; fog: 0 seed: 2"></a-entity>
+            <a-sphere position="1800 -600 -1500" radius="800" animation="property: rotation; to: 0 360 0; dur: 100000; easing: linear; loop: true" src="#planetaBarren"></a-sphere>
+            <a-sky radius="10000" src="#cielo"></a-sky>
+            <a-light position="0 10 20" color="#fff" intensity="1.0"></a-light>
+            <a-camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+        </a-scene>
+    </body>
+</html>

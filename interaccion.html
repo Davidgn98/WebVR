@@ -12,8 +12,17 @@
             </a-camera>
         </a-scene>
         <script>
-            document.getElementById("caja").addEventListener("mouseenter",()=>{
-                alert("hola");
+            document.getElementById("caja").addEventListener("mouseenter",function (event)
+            {
+                this.setAttribute("color","red");
+            })
+            document.getElementById("caja").addEventListener("mouseleave",function (event)
+            {
+                this.setAttribute("color","grey");
+            })
+            document.getElementById("caja").addEventListener("click",function (event)
+            {
+                this.remove();
             })
         </script>
     </body>

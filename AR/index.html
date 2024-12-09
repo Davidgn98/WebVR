@@ -12,9 +12,9 @@
         <a-asset>
             <a-asset-item id="model" src="Pikachu.blend"></a-asset-item>
         </a-asset>
-        <a-marker preset="hiro">
- 
-            <a-entity blend-model="#model" position="0 0 -3" rotation="0 225 0"/>
+        <a-marker type="pattern" preset="custom" url="Patterns/pattern-0.patt">
+            <a-box position="0 0 -3"color="red"></a-box>
+            <!-- <a-entity blend-model="#model" position="0 0 -3" rotation="0 225 0"/> -->
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>

@@ -9,7 +9,17 @@
 </head>
 <body style="margin: 0; overflow:hidden;"> 
     <a-scene embedded arjs="debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector id="scene">
-        
+        <a-nft
+            type="nft"
+            url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+            raycaster="objects: .clickable"
+            emitevents="true"
+            cursor="fuse: false; rayOrigin: mouse;"
+        >
         <a-asset>
             <a-asset-item id="model" src="Pikachu.blend"></a-asset-item>
         </a-asset>
@@ -18,7 +28,7 @@
             <!-- <a-entity blend-model="#model" position="0 0 0" rotation="0 0 0"/> -->
         </a-marker>
         <a-entity camera></a-entity>
-       
+        </a-nft>
     </a-scene>
     <script>
         sceneEl.addEventListener("onefingermove", handleRotation);

@@ -9,38 +9,29 @@
 </head>
 <body style="margin: 0; overflow:hidden;"> 
     <a-scene embedded arjs="debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector id="scene">
-        <a-nft
-            type="nft"
-            smooth="true"
-            smoothCount="10"
-            smoothTolerance=".01"
-            smoothThreshold="5"
-            raycaster="objects: .clickable"
-            emitevents="true"
-            cursor="fuse: false; rayOrigin: mouse;"
-        >
         <a-asset>
             <a-asset-item id="model" src="Pikachu.blend"></a-asset-item>
         </a-asset>
         <a-marker type="barcode" value="0">
-            <a-box position="0 0 0" rotation="0 0 0" color="red"></a-box>
+            <a-box position="0 0 0" rotation="0 0 0" color="red" id="object"></a-box>
             <!-- <a-entity blend-model="#model" position="0 0 0" rotation="0 0 0"/> -->
         </a-marker>
         <a-entity camera></a-entity>
-        </a-nft>
     </a-scene>
     <script>
-        sceneEl.addEventListener("onefingermove", handleRotation);
+        var scene = document.getElementById("scene");
+        var object = document.getElementById("object");
+        scene.addEventListener("onefingermove", handleRotation);
         handleRotation(event) {
         if (isMarkerVisible) {
-            el.object3D.rotation.y +=
+            object.rotation.y +=
                 event.detail.positionChange.x * rotationFactor;
 
-            el.object3D.rotation.x +=
+                object.rotation.x +=
                 event.detail.positionChange.y * rotationFactor;
             }
         }
-        sceneEl.addEventListener("twofingermove", handleScale);
+        scene.addEventListener("twofingermove", handleScale);
         handleScale(event) {
             if (isMarkerVisible) {
             this.scaleFactor *=
@@ -51,16 +42,16 @@
                 this.data.maxScale
             );
 
-            el.object3D.scale.x = scaleFactor * initialScale.x;
-            el.object3D.scale.y = scaleFactor * initialScale.y;
-            el.object3D.scale.z = scaleFactor * initialScale.z;
+            object.scale.x = scaleFactor * initialScale.x;
+            object.scale.y = scaleFactor * initialScale.y;
+            object.scale.z = scaleFactor * initialScale.z;
             }
         }
-        sceneEl.addEventListener("markerFound", (e) => {
+        scene.addEventListener("markerFound", (e) => {
             isMarkerVisible = true;
         });
 
-        sceneEl.addEventListener("markerLost", (e) => {
+        scene.addEventListener("markerLost", (e) => {
             isMarkerVisible = false;
         });
     </script>

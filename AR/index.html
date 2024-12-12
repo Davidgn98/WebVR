@@ -21,7 +21,13 @@
     <script>
         var scene = document.getElementById("scene");
         var object = document.getElementById("object");
-        object.addEventListener("onefingermove", handleRotation);
+        object.addEventListener("markerFound", (e) => {
+            isMarkerVisible = true;
+        });
+
+        object.addEventListener("markerLost", (e) => {
+            isMarkerVisible = false;
+        });
         handleRotation(event) {
         if (isMarkerVisible) {
             object.object3D.rotation.y +=
@@ -31,7 +37,7 @@
             event.detail.positionChange.y * rotationFactor;
         }
   }
-        object.addEventListener("twofingermove", handleScale);
+        
         handleScale(event) {
         if (isMarkerVisible) {
         this.scaleFactor *=
@@ -47,13 +53,9 @@
         el.object3D.scale.z = scaleFactor * initialScale.z;
         }
     }
-        object.addEventListener("markerFound", (e) => {
-            isMarkerVisible = true;
-        });
-
-        object.addEventListener("markerLost", (e) => {
-            isMarkerVisible = false;
-        });
+        
+        object.addEventListener("onefingermove", handleRotation);
+        object.addEventListener("twofingermove", handleScale);
     </script>
 </body>
 </html>

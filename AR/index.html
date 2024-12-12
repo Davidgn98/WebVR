@@ -13,7 +13,7 @@
             <a-asset-item id="model" src="Pikachu.blend"></a-asset-item>
         </a-asset>
         <a-marker type="barcode" value="0">
-            <a-box position="0 0 0" rotation="0 0 0" color="red" id="object"></a-box>
+            <a-box position="0 0 0" rotation="0 0 0" color="red" id="object" class="clickable" gesture-handler="minScale: 0.25; maxScale: 10"></a-box>
             <!-- <a-entity blend-model="#model" position="0 0 0" rotation="0 0 0"/> -->
         </a-marker>
         <a-entity camera></a-entity>
@@ -21,37 +21,37 @@
     <script>
         var scene = document.getElementById("scene");
         var object = document.getElementById("object");
-        scene.addEventListener("onefingermove", handleRotation);
+        object.addEventListener("onefingermove", handleRotation);
         handleRotation(event) {
         if (isMarkerVisible) {
-            object.rotation.y +=
-                event.detail.positionChange.x * rotationFactor;
+            object.object3D.rotation.y +=
+            event.detail.positionChange.x * rotationFactor;
 
-                object.rotation.x +=
-                event.detail.positionChange.y * rotationFactor;
-            }
+            object.object3D.rotation.x +=
+            event.detail.positionChange.y * rotationFactor;
         }
-        scene.addEventListener("twofingermove", handleScale);
+  }
+        object.addEventListener("twofingermove", handleScale);
         handleScale(event) {
-            if (isMarkerVisible) {
-            this.scaleFactor *=
-                1 + event.detail.spreadChange / event.detail.startSpread;
+        if (isMarkerVisible) {
+        this.scaleFactor *=
+            1 + event.detail.spreadChange / event.detail.startSpread;
 
-            this.scaleFactor = Math.min(
-                Math.max(this.scaleFactor, this.data.minScale),
-                this.data.maxScale
-            );
+        this.scaleFactor = Math.min(
+            Math.max(this.scaleFactor, this.data.minScale),
+            this.data.maxScale
+        );
 
-            object.scale.x = scaleFactor * initialScale.x;
-            object.scale.y = scaleFactor * initialScale.y;
-            object.scale.z = scaleFactor * initialScale.z;
-            }
+        el.object3D.scale.x = scaleFactor * initialScale.x;
+        el.object3D.scale.y = scaleFactor * initialScale.y;
+        el.object3D.scale.z = scaleFactor * initialScale.z;
         }
-        scene.addEventListener("markerFound", (e) => {
+    }
+        object.addEventListener("markerFound", (e) => {
             isMarkerVisible = true;
         });
 
-        scene.addEventListener("markerLost", (e) => {
+        object.addEventListener("markerLost", (e) => {
             isMarkerVisible = false;
         });
     </script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <script src="./aframe-master.min.js"></script>
+<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
 <!-- include aframe-ar.js -->
 <script src="./aframe-ar.js"></script>
 
@@ -29,7 +30,7 @@
                 animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
                 </a-torus-knot>
             </a-box> -->
-            <a-entity gltf-model="#pokemon1" position="0 0.5 0" rotation="0 90 0" scale="0.8 0.8 0.8"></a-entity>
+            <a-entity gltf-model="#pokemon1" position="0 0.5 0" rotation="0 90 0" scale="0.8 0.8 0.8" animation-mixer></a-entity>
         </a-marker>
         <!-- handle matrix marker -->
         <a-marker type='barcode' value='1'>
